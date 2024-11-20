@@ -10,7 +10,7 @@ import org.acme.repository.ClientRepository;
 
 import java.util.List;
 
-@Path("/clientes")
+@Path("/clients")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ClientResource {
@@ -29,4 +29,7 @@ public class ClientResource {
     public List<Client> listAll() {
         return clientRepository.listAll();
     }
+    
 }
+
+

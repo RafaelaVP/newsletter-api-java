@@ -14,7 +14,7 @@ public class DailyEmailScheduler {
     @Inject
     EmailService emailService;
 
-    @Scheduled(cron = "0 8 * * * ?") 
+    @Scheduled(cron = "0 0 */8 * * ?")
     @Transactional
     public void sendEmails() {
         emailService.sendDailyEmails(clientRepository.listAll());

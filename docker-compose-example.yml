@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  db:
+    image: postgres:latest
+    container_name: postgres-db
+    environment:
+      POSTGRES_USER: ${DB_USERNAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+      POSTGRES_DB: newsletter_db
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    networks:
+      - app-network
+
+  mailhog:
+    image: mailhog/mailhog:latest
+    container_name: mailhog
+    ports:
+      - "8025:8025"  
+      - "1025:1025"  
+    networks:
+      - app-network
+
+  app:
+    image: your-quarkus-app-image 
+    container_name: quarkus-app
+    environment:
+      DB_USERNAME: ${DB_USERNAME}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_URL: jdbc:postgresql://db:5432/newsletter_db
+      MAIL_FROM: ${MAIL_FROM}
+      MAIL_HOST: mailhog
+      MAIL_PORT: 1025
+    depends_on:
+      - db
+      - mailhog
+    ports:
+      - "8080:8080"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  postgres-data:
+    driver: local

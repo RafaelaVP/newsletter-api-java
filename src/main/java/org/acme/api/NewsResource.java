@@ -10,7 +10,7 @@ import org.acme.repository.NewsRepository;
 
 import java.util.List;
 
-@Path("/noticias")
+@Path("/news")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class NewsResource {
@@ -29,4 +29,5 @@ public class NewsResource {
     public List<News> listUnprocessed() {
         return newsRepository.findUnprocessed();
     }
+    
 }

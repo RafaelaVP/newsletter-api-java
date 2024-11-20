@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.validation.constraints.NotBlank;
+
+import java.net.MalformedURLException;
 import java.net.URL;
 
 @Entity
@@ -26,10 +28,14 @@ public class News {
 
     public News() {}
 
-    public News(String title, String description, URL link, boolean processed) {
+    public News(String title, String description, String link, boolean processed) {
         this.title = title;
         this.description = description;
-        this.link = link;
+        try {
+            this.link = new URL(link);  
+        } catch (MalformedURLException e) {
+            this.link = null;
+        }
         this.processed = processed;
     }
 
@@ -61,8 +67,12 @@ public class News {
         return link;
     }
 
-    public void setLink(URL link) {
-        this.link = link;
+    public void setLink(String link) {
+        try {
+            this.link = new URL(link);  
+        } catch (MalformedURLException e) {
+            this.link = null; 
+        }
     }
 
     public boolean isProcessed() {
