@@ -18,14 +18,18 @@ You can run your application in dev mode that enables live coding using:
 
 > **_NOTE:_**  Quarkus now ships with a Dev UI, which is available in dev mode only at <http://localhost:8080/q/dev/>.
 
+Tests
+
  ```shell script tests
 ./mvnw test
 ```
 
+Clean dependencies
 ```shell script clean dependencies
 ./mvnw clean install
 ```
- Start the database and MailHog services with Docker Compose using the command `docker-compose up`
+
+Start the database and MailHog services with Docker Compose using the command `docker-compose up`
 
 
 ## Packaging and running the application
@@ -55,8 +59,8 @@ To test the system, you can use any HTTP client to make requests to the API. The
 
 - `POST /clients`: To register a new client.
 - `POST /news`: To register a new news.
-- `GET /clients`: .
-- `GET /news`: List clients.
+- `GET /clients`: List clients.
+- `GET /news`: List unsent news.
 
 To test the sending of emails, you can use the MailHog web interface, which is available at `http://localhost:8025`.
 
