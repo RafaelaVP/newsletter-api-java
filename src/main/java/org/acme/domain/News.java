@@ -24,7 +24,15 @@ public class News {
 
     private boolean processed;
 
-    // Getters e Setters
+    public News() {}
+
+    public News(String title, String description, URL link, boolean processed) {
+        this.title = title;
+        this.description = description;
+        this.link = link;
+        this.processed = processed;
+    }
+
     public Long getId() {
         return id;
     }

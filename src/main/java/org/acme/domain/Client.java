@@ -24,7 +24,14 @@ public class Client {
 
     private LocalDate birthDate;
 
-    // Getters e Setters
+    public Client() {}
+
+    public Client(String name, String email, LocalDate birthDate) {
+        this.name = name;
+        this.email = email;
+        this.birthDate = birthDate;
+    }
+
     public Long getId() {
         return id;
     }

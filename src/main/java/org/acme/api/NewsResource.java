@@ -1,6 +1,7 @@
 package org.acme.api;
 
 import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
@@ -18,6 +19,7 @@ public class NewsResource {
     NewsRepository newsRepository;
 
     @POST
+    @Transactional
     public Response create(News news) {
         newsRepository.persist(news);
         return Response.status(Response.Status.CREATED).entity(news).build();
